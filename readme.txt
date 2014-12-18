@@ -3,7 +3,7 @@ Contributors: helium-3
 Donate link:
 Tags: login, bruteforce, throttling, security, protection, ip, block, ban
 Requires at least: 3.5
-Tested up to: 4.0.1
+Tested up to: 4.1
 Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -16,11 +16,13 @@ allow number of attempts in given time.
 How it works:
 
 Mode 1  set a delay after each attempt e.g.
-		* 1 attempt = no delay
-		* 2 attempts = 5 sec delay
-		* 3-4 attempts = 15 sec delay
-		* 5-9 attempts = 30 sec delay
-		* 10+ attempts = 45 sec delay
+<ul>
+		<li>1 attempt = no delay</li>
+		<li>2 attempts = 5 sec delay</li>
+		<li>3-4 attempts = 15 sec delay</li>
+		<li>5-9 attempts = 30 sec delay</li>
+		<li>10+ attempts = 45 sec delay</li>
+</ul>
 		This is just an example! You can program it however you want.
 
 Mode 2 -  allow a number of attempts in given time.
@@ -51,20 +53,22 @@ This plugin doesn't use plugabble functions and should be compatible with any ot
 Another examples:
 
 1=>2; 2=>4; 3=>8; 4=>16; 5=>32; 8=>64;
-*1 attempt = 2seconds
-*2 attempts = 4 seconds
-*3 attempts = 8 seconds
-*4 attempts = 16 seconds
-*5-7 attempts = 32 seconds
-*8 or more attempts = 64 seconds
-
+<ul>
+<li>1 attempt = 2seconds</li>
+<li>2 attempts = 4 seconds</li>
+<li>3 attempts = 8 seconds</li>
+<li>4 attempts = 16 seconds</li>
+<li>5-7 attempts = 32 seconds</li>
+<li>8 or more attempts = 64 seconds</li>
+</ul>
 2=>5; 3=>15; 5=>30; 10=>45;
-*1 attempt = no delay
-*2 attempts = 5 sec delay
-*3-4 attempts = 15 sec delay
-*5-9 attempts = 30 sec delay
-*10+ attempts = 45 sec delay
-
+<ul>
+<li>1 attempt = no delay</li>
+<li>2 attempts = 5 sec delay</li>
+<li>3-4 attempts = 15 sec delay</li>
+<li>5-9 attempts = 30 sec delay</li>
+<li>10+ attempts = 45 sec delay</li>
+</ul>
 
 = What is record expiration time? =
 
