@@ -92,8 +92,9 @@ class IPBlock_admin {
 	public function plugin_page() {
 		echo '<div class="wrap">';
 		echo '<h2>IPBlock settings</h2>';
-		echo '<p>Note that everytime you change configuration all ip records are cleared';
-		echo '<form method="post" action="options.php"> ';
+		echo '<p>Note that everytime you change configuration all ip records are cleared</p>';
+		echo '<p><a href="https://wordpress.org/plugins/ipblock/faq/">Frequently Asked Questions</a></p>';
+		echo '<form method="post" action="options.php">';
 		settings_fields($this->option_group);
 		do_settings_sections($this->page_id);
 		submit_button();
