@@ -85,4 +85,6 @@ Note that 'login protection by IPBlock' text is optional
 
 == Changelog ==
 
-1.0 - Initial release (December 18 2014)
+1.0
+Released: December 18 2014
+*Initial release 
