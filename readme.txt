@@ -26,6 +26,8 @@ This is just an example! You can program it however you want.
 Mode 2 -  allow a number of attempts in given time.
 		For example allow 5 attempts in 15 minutes.
 
+Time left is formatted properly e.g. 10 seconds, 1 minute, 3 hours
+
 This plugin doesn't use plugabble functions and should be compatible with any other plugin.
 
 
@@ -74,11 +76,13 @@ Another examples:
 
 == Screenshots ==
 
-1.
-2.
-3.
-4.
+1. delay was set notice (Mode 1)
+2. cannot login yet error
+3. number of attempts used notice (Mode 2)
+4. all attempts used notice (Mode 2)
+
+Note that 'login protection by IPBlock' text is optional
 
 == Changelog ==
 
-1.0 - Initial release
+1.0 - Initial release (December 18 2014)
