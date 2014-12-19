@@ -1,15 +1,14 @@
 === Plugin Name ===
 Contributors: helium-3
-Donate link:
-Tags: login, bruteforce, throttling, security, protection, ip, block, ban
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=P5UC9VG3Q687N
+Tags: plugin, admin, best security plugins, login, bruteforce, login throttling, security, protection, ip, block, ipblock,  ban, auth, authentication, botnet, brute force, harden wp, limit login attempts, limit logins, lockdown
 Requires at least: 3.5
 Tested up to: 4.1
 Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-IPBlock allows you to restrict number of login attempts from single IP. There are 2 modes: set a small delay after each login attempt or
-allow number of attempts in given time.
+IPBlock limits login attempts. There are 2 modes: set a small delay after each login attempt or allow number of attempts in given time.
 
 == Description ==
 
@@ -21,9 +20,8 @@ Mode 1  set a delay after each attempt e.g.
 		<li>2 attempts = 5 sec delay</li>
 		<li>3-4 attempts = 15 sec delay</li>
 		<li>5-9 attempts = 30 sec delay</li>
-		<li>10+ attempts = 45 sec delay</li>
-</ul>
-		This is just an example! You can program it however you want.
+		<li>10+ attempts = 45 sec delay</li></ul>
+This is just an example! You can program it however you want.
 
 Mode 2 -  allow a number of attempts in given time.
 		For example allow 5 attempts in 15 minutes.
@@ -74,6 +72,12 @@ Another examples:
 
 <p>This option is also only for Mode 1. Record expiration time tells how long to track an ip after last login attempt. An ip record has a certain expiration timestamp, when it expires it is treated as it doesn't exist and is pending removal. Every time a login attempt is made expriation timestamp is set to a sum of current timestamp and record expiration time. For example if an ip has 20 login attempts and record expiration time is 60 seconds and if user of that ip won't log in in next 60 seconds, the record will be no longer valid and ip will be treated as if it made 0 attempts.</p>
 
+== Screenshots ==
+
+1.
+2.
+3.
+4.
 
 == Changelog ==
 
