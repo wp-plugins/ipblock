@@ -3,18 +3,20 @@ Contributors: helium-3
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=P5UC9VG3Q687N
 Tags: plugin, admin, best security plugins, login, bruteforce, login throttling, security, protection, ip, block, ipblock,  ban, auth, authentication, botnet, brute force, harden wp, limit login attempts, limit logins, lockdown
 Requires at least: 3.5
-Tested up to: 4.1
+Tested up to: 4.2.2
 Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-IPBlock limits login attempts. There are 2 modes: set a small delay after each login attempt or allow number of attempts in given time.
+IPBlock offers powerful protection against bruteforce login attacks. Works in 2 modes, allowing you to set your own blocking scheme.
 
 == Description ==
 
-How it works:
+IPBlock limits number of attempts an user has to log in, thus providing very good protection against automated login attacks. It is highly customizable, you can set your own blocking scheme and decide what is the best to not annoy forgetful users. 
 
-Mode 1  set a delay after each attempt e.g.
+Featuring 2 working modes:
+
+Mode 1 - set a small delay after each attempt e.g.
 <ul>
 		<li>1 attempt = no delay</li>
 		<li>2 attempts = 5 sec delay</li>
@@ -23,10 +25,9 @@ Mode 1  set a delay after each attempt e.g.
 		<li>10+ attempts = 45 sec delay</li></ul>
 This is just an example! You can program it however you want.
 
-Mode 2 -  allow a number of attempts in given time.
-		For example allow 5 attempts in 15 minutes.
+Mode 2 -  allow a number of attempts in given time. For instance, allow 5 attempts in 15 minutes.
 
-Time left is formatted properly e.g. 10 seconds, 1 minute, 3 hours
+Time left is displayed in proper formatting, e.g. 10 seconds, 1 minute, 3 hours
 
 This plugin doesn't use plugabble functions and should be compatible with any other plugin.
 
