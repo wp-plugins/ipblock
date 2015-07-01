@@ -2,23 +2,31 @@
 
 defined('ABSPATH') or die();
 
-class IPBlock_admin {
+class IPBlock_Settings {
 
 	public function __construct() {
+		
 		global $wpdb;
-		$this->dbtab=$wpdb->prefix.'ipblock'; #table name, if you want to change this, you must also change it in line 43 (for uninstallation)
+		$this->dbtab=$wpdb->prefix.'ipblock';
+		
+		$this->plugin_url=plugins_url().'/'.basename(dirname(__FILE__));
+		$this->plugin_path=dirname(__FILE__);
+
 
 		#install/uninstall hooks
-		if (!get_option($this->option_name)) register_activation_hook( 'ipblock/ipblock.php', array($this,'install'));
-		else register_uninstall_hook( 'ipblock/ipblock.php', array('IPBlock_admin','uninstall'));
+		if (!get_option($this->option_name)) register_activation_hook( 'ipblock/index.php', array($this,'install'));
 
         add_action( 'admin_menu', array( $this, 'add_plugin_page' ) );
         add_action( 'admin_init', array( $this, 'add_settings' ) );
+        
+        if (basename($_SERVER['PHP_SELF'])==='options-general.php' && isset($_GET['page']) && $_GET['page']===$this->page_id)
+			add_action('admin_enqueue_scripts',array($this,'enqueue_settings_scripts'));
+        
 		#get current values for options
 		$this->options=get_option($this->option_name);
     }
 
-	public function install() { //runs on FIRST activation
+	public function install() {
 		#default option values
 		$this->options=array('mode'=>1, 'credits'=>1, 'schedule_frequency'=>600, 'exp_time'=>1000, 'mode2_attempts'=>5, 'mode2_time'=>300);
 		$this->options['scheme']=array(2=>5, 3=>15, 5=>30, 10=>45);
@@ -37,21 +45,99 @@ class IPBlock_admin {
 		wp_schedule_event(time(),'ipblock_schedule_frequency','ipblock_records_cleanup');
 	}
 
-	static function uninstall() { //not part of the object
-		global $wpdb;
-		$option_name='ipblock-settings';
-		$dbtab=$wpdb->prefix.'ipblock';
-		wp_clear_scheduled_hook('ipblock_records_cleanup');
-		delete_option($option_name);
-		$wpdb->query("DROP TABLE $dbtab");
-	}
 
 	public function records_purge() {
 		global $wpdb;
 		$dbtab=$this->dbtab;
 		$wpdb->query("DELETE FROM $dbtab");
 	}
+	
+	public function enqueue_settings_scripts() {
+		wp_enqueue_script('ipblock_settings', $this->plugin_url.'/includes/js/settings.js', array('jquery'));
+		wp_enqueue_style('ipblock_settings', $this->plugin_url.'/includes/css/settings.css');
+		
+		$icon_close=file_get_contents($this->plugin_path.'/includes/assets/icons/close.svg');
+		wp_localize_script( 'ipblock_settings', 'PHP',array('icon_close' => $icon_close));
+		
 
+	}
+
+	public function add_plugin_page() {
+		add_options_page( 'IPBlock Settings', 'IPBlock', 'manage_options', $this->page_id, array($this,'plugin_page') );
+	}
+
+	public function plugin_page() {
+		
+		?>
+		
+		<div class="wrap">
+			
+			
+		<h2>IPBlock Settings</h2>
+
+		
+			
+		<div id="ipblock-settings-about">
+						
+			
+			<div id="ipblock-settings-windowpress">
+			
+			
+			
+			<div class="about-section">
+				<p>Check out my new plugin WindowPress. It allows you to open multiple pages in the administration area, so you can do many admin tasks in just one browser tab.</p>
+				<a href="https://wordpress.org/plugins/windowpress/" target="_blank"><img src="<?php echo $this->plugin_url.'/includes/assets/images/windowpress.png'; ?>" /></a>
+			</div>
+			
+			
+			</div>
+			
+	
+			<div class="about-row-2">
+
+				<div class="about-section">
+				<p>If you like this plugin and find it useful, please consider donating.</p>
+				<a class="button button-blue mobile-button-noborder-right" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=P5UC9VG3Q687N" target="_blank">Donate</a>
+				</div>
+			
+				<div class="about-section">
+				<p>Your feedback is important.</p>
+				<a class="button button-red mobile-button-noborder-left mobile-button-noborder-right" href="https://wordpress.org/support/view/plugin-reviews/ipblock?rate=5#postform" target="_blank">Review</a>
+				</div>
+			
+				<div class="about-section">
+				<p>Need help, found a bug? Check the Support Forum and Frequently Asked Questions.</p>
+				<a class="button button-green button-half button-left mobile-button-noborder-left" href="https://wordpress.org/support/plugin/ipblock" target="_blank">Forum</a>
+				<a class="button button-orange button-half button-right" href="https://wordpress.org/plugins/ipblock/faq/" target="_blank">FAQ</a>
+				</div>
+			
+			</div>
+			
+		</div>
+		
+		
+		<div id="ipblock-settings-options">
+			
+			<p>Note that everytime you change configuration all ip records are cleared</p>
+
+			<form method="post" action="options.php"><?php
+			settings_fields($this->option_group);
+			do_settings_sections($this->page_id);
+			submit_button();
+			?></form>
+		</div>
+		
+		
+		<?php
+				
+		echo '</div>';//wpwrap
+		
+		
+		
+		
+	}
+	
+	
 	public function add_settings() {
 		register_setting( $this->option_group, $this->option_name,array( $this, 'sanitize'));
 		#general settings
@@ -63,10 +149,10 @@ class IPBlock_admin {
 			array('schedule_frequency',''));
 		#mode1 settings
 		add_settings_section($this->section_mode1,'Mode 1',array($this,'section_mode1'),$this->page_id);
+		add_settings_field('scheme_input','Delay scheme',array($this,'scheme_callback'),$this->page_id,$this->section_mode1,
+			array('scheme_input','Check FAQ for details.'));
 		add_settings_field('exp_time','Record expiration time',array( $this,'text_callback'),$this->page_id,$this->section_mode1,
 			array('exp_time','Check FAQ for details'));
-		add_settings_field('scheme_input','Delay scheme',array($this,'text_callback'),$this->page_id,$this->section_mode1,
-			array('scheme_input','Check FAQ for details.'));
 		add_settings_field('mode1_message_header','IPBlock error',array($this,'text_callback'),$this->page_id,$this->section_mode1,
 			array('mode1_message_header','This is a message that is displayed when someone tries to log in or just visits login page while being blocked.<br />%s is time remaining.'));
 		add_settings_field('mode1_message_footer','Delay set notice',array($this,'text_callback'),$this->page_id,$this->section_mode1,
@@ -84,23 +170,8 @@ class IPBlock_admin {
 		add_settings_field('mode2_message_footer2','Block set notice',array($this,'text_callback'),$this->page_id,$this->section_mode2,
 			array('mode2_message_footer2','This is a notice displayed under login form, right after last allowed attempt was made. It informs the user that he reached the maximum number of attempts and should wait to try again.<br />%s is time remaining.'));
 	}
-
-	public function add_plugin_page() {
-		add_options_page( 'IPBlock Options', 'IPBlock', 'manage_options', $this->page_id, array($this,'plugin_page') );
-	}
-
-	public function plugin_page() {
-		echo '<div class="wrap">';
-		echo '<h2>IPBlock settings</h2>';
-		echo '<p>Note that everytime you change configuration all ip records are cleared</p>';
-		echo '<p><a href="https://wordpress.org/plugins/ipblock/faq/">Frequently Asked Questions</a></p>';
-		echo '<form method="post" action="options.php">';
-		settings_fields($this->option_group);
-		do_settings_sections($this->page_id);
-		submit_button();
-		echo '</form>';
-		echo '</div>';
-	}
+	
+	
 	#SECTION DESCRIPTIONS
 	public function section_general() { echo '<p>General Settings</p>'; }
     public function section_mode1() { echo '<p>Set a custom delay after each login attempt.</p>'; }
@@ -115,8 +186,27 @@ class IPBlock_admin {
 		echo "<input type=\"text\" id=\"$option_id\" name=\"".$this->option_name."[$option_id]\" style=\"width:$width;\" value=\"$value\" />";
 		if ($option_id=='exp_time' or $option_id=='mode2_time' or $option_id=='schedule_frequency') echo ' seconds';
 		#Description
+		if(!empty($description)) { 
+		//		echo '</td></tr><tr>';
+		//		echo "<td style='padding:0px; margin-top:-10px; font-size:12px;' colspan='2'>";
+				echo "<p class='description'>$description</p>";
+		}
+	}
+	
+	public function scheme_callback($args) { $option_id=$args[0]; $description=$args[1];
+		if (isset($this->options[$option_id])) $value=esc_attr($this->options[$option_id]);
+		else $value=null;
+		
+		$width='500px';
+		echo "<input type=\"text\" id=\"$option_id\" name=\"".$this->option_name."[$option_id]\" style=\"width:$width;\" value=\"$value\" />";
+		#Description
+		if(!empty($description)) echo "<p class='scheme-description'>$description</p>";
+		
 		echo '</td></tr><tr>';
-		echo "<td style='padding:0px; margin-top:-10px; font-size:12px;' colspan='2'>$description";
+		echo "<td style='padding:0px; margin-top:-10px; font-size:12px;' colspan='2'>";
+		
+		echo '<div id="scheme_wrapper"></div>';
+
 	}
 
     public function mode_callback() {
@@ -139,8 +229,11 @@ class IPBlock_admin {
 		echo " <input type=\"radio\"  name=\"".$this->option_name."[$option_id]\" value=\"1\" $checked1>On IPBlock output&nbsp;&nbsp;&nbsp;";
 		echo " <input type=\"radio\"  name=\"".$this->option_name."[$option_id]\" value=\"2\" $checked2>Always&nbsp;&nbsp;&nbsp;";
 		#Description
-		echo '</td></tr><tr>';
-		echo "<td style='padding:0px; margin-top:-10px; font-size:12px;' colspan='2'>$description";
+		if(!empty($description)) { 
+		//		echo '</td></tr><tr>';
+		//		echo "<td style='padding:0px; margin-top:-10px; font-size:12px;' colspan='2'>";
+				echo "<p class='description'>$description</p>";
+		}
 	}
 
 	#SANITIZE
@@ -230,10 +323,11 @@ class IPBlock_admin {
 	private $section_mode1='ipblock-settings-mode1';
 	private $section_mode2='ipblock-settings-mode2';
 
-	private $option_name='ipblock-settings'; #dont change this, its hardcoded in uninstall function
+	private $option_name='ipblock-settings';
 
+	private $plugin_url;
 }
 
-$ipblock_admin = new IPBlock_admin();
+$ipblock_settings = new IPBlock_Settings();
 
 ?>

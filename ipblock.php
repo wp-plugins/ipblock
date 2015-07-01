@@ -1,13 +1,5 @@
 <?php
-/**
- * Plugin Name: IPBlock
- * Plugin URI: https://wordpress.org/plugins/ipblock
- * Description: Powerful login throttling plugin for Your Wordpress site
- * Version: 1.0
- * Author: Maciej Krawczyk
- * Author URI: https://profiles.wordpress.org/helium-3
- * License: GPLv2 or later
- */
+
 
 defined('ABSPATH') or die();
 
