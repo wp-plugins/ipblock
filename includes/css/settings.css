@@ -1,0 +1,260 @@
+/* scheme table */
+
+#scheme_table input {
+	width:50px;
+	margin-right:10px;
+	float:left;
+	}
+#scheme_table p {
+	float:left;
+	}
+
+#scheme_table input.error {
+	border-color:red;
+	}
+	
+#scheme_table td {
+	width:auto;
+	}
+
+	
+#scheme_table td.remove > svg {
+	width:32px;
+	height:32px;
+	cursor:pointer;
+}
+
+#scheme_table td.remove path {
+	fill:red;
+}
+
+
+
+
+
+
+
+#ipblock-settings-options {
+	float:left;
+	width:100%;
+	padding-right:250px;
+	box-sizing:border-box;
+}
+
+
+#ipblock-settings-about {
+	float:right;
+	width:250px;
+	margin-left:-250px;
+	box-sizing:border-box;
+	padding-left:20px;
+	position:fixed;
+	top:50px;
+	right:20px;
+	z-index:1000;
+}
+
+#ipblock-settings-options .form-table th { width:150px; }
+
+
+
+#ipblock-settings-windowpress img { width:200px; }
+
+
+
+#ipblock-settings-about .button { 
+	width:200px; 
+	height:auto;
+	box-sizing:border-box;
+	font-size:20px;
+	padding: 10px 10px 10px 10px;
+	display:block;
+	text-align:center;
+}
+
+#ipblock-settings-about .button-half { 
+display:block;
+width:100px;
+float:left;
+}
+#ipblock-settings-about .button-left { 
+border-right:0; 
+border-top-right-radius: 0;
+border-bottom-right-radius: 0;
+
+}
+
+
+#ipblock-settings-about .button-right { 
+border-left:0; 
+border-top-left-radius: 0;
+border-bottom-left-radius: 0;
+
+
+}
+
+
+#ipblock-settings-about .about-section { padding-top:15px; width:100%; }
+
+#ipblock-settings-about p { margin: 4px 0; }
+
+@media screen and (max-width:782px) {
+
+	#ipblock-settings-options {
+		float:none;
+		width:100%;
+		padding-right:0px;
+		box-sizing:border-box;
+	}
+
+	#ipblock-settings-about {
+		float:none;
+		width:100%;
+		margin-left:0px;
+		box-sizing:border-box;
+		padding-left:0px;
+		position:static;
+		/*top:200px;
+		right:20px;*/
+		margin-bottom:100px;
+	}
+	
+
+
+	#ipblock-settings-about p, h2 { display:none; }
+	
+	#ipblock-settings-about .about-row-2 { width:100%;  }
+	
+	#ipblock-settings-about .about-row-2 > .about-section { float:left; width:25%; }
+	
+	#ipblock-settings-about .about-row-2 > .about-section:last-child { width:50%; }
+
+
+	#ipblock-settings-about .button { width:100%; }
+	
+	#ipblock-settings-about .button-half { width:50%; }
+	
+	#ipblock-settings-about .mobile-button-noborder-left {
+		border-left:0; 
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+	}
+
+	#ipblock-settings-about .mobile-button-noborder-right {
+		border-right:0; 
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+}
+
+
+  
+/*WordPress button styles*/
+  
+#ipblock-settings-about .button-blue {
+    background: #00a0d2 none repeat scroll 0 0;
+    border-color: #0073aa;
+    box-shadow: 0 1px 0 rgba(120, 200, 230, 0.5) inset, 0 1px 0 rgba(0, 0, 0, 0.15);
+    color: #fff;
+    text-decoration: none;
+}
+#ipblock-settings-about .button-blue.focus, 
+#ipblock-settings-about .button-blue.hover, 
+#ipblock-settings-about .button-blue:focus, 
+#ipblock-settings-about .button-blue:hover {
+    background: #0091cd none repeat scroll 0 0;
+    border-color: #0073aa;
+    box-shadow: 0 1px 0 rgba(120, 200, 230, 0.6) inset;
+    color: #fff;
+}
+#ipblock-settings-about .button-blue.focus, 
+#ipblock-settings-about .button-blue:focus {
+    border-color: #0e3950;
+    box-shadow: 0 1px 0 rgba(120, 200, 230, 0.6) inset, 0 0 0 1px #5b9dd9, 0 0 2px 1px rgba(30, 140, 190, 0.8);
+}
+#ipblock-settings-about .button-blue.active, 
+#ipblock-settings-about .button-blue.active:focus, 
+#ipblock-settings-about .button-blue.active:hover, 
+#ipblock-settings-about .button-blue:active {
+    background: #0073aa none repeat scroll 0 0;
+    border-color: #005082;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1) inset;
+    color: rgba(255, 255, 255, 0.95);
+    vertical-align: top;
+}
+
+
+
+
+#ipblock-settings-about .button-green {
+    background: #a3b745 none repeat scroll 0 0;
+    border-color: #829237;
+    box-shadow: 0 1px 0 #bfcd7b inset, 0 1px 0 rgba(0, 0, 0, 0.15);
+    color: #fff;
+}
+#ipblock-settings-about .button-green:focus, 
+#ipblock-settings-about .button-green:hover {
+    background: #93a43e none repeat scroll 0 0;
+    border-color: #727f30;
+    box-shadow: 0 1px 0 #b6c669 inset;
+    color: #fff;
+}
+#ipblock-settings-about .button-green:focus {
+    box-shadow: 0 1px 0 #b6c669 inset, 0 0 0 1px #5b9dd9, 0 0 2px 1px rgba(30, 140, 190, 0.8);
+}
+#ipblock-settings-about .button-green:active {
+    background: #829237 none repeat scroll 0 0;
+    border-color: #727f30;
+    box-shadow: 0 2px 5px -3px rgba(0, 0, 0, 0.5) inset, 0 0 0 1px #5b9dd9, 0 0 2px 1px rgba(30, 140, 190, 0.8);
+    color: #fff;
+}
+
+
+
+#ipblock-settings-about .button-red {
+    background: #e14d43 none repeat scroll 0 0;
+    border-color: #d02c21;
+    box-shadow: 0 1px 0 #ec8b85 inset, 0 1px 0 rgba(0, 0, 0, 0.15);
+    color: #fff;
+}
+#ipblock-settings-about .button-red:focus, 
+#ipblock-settings-about .button-red:hover {
+    background: #dd382d none repeat scroll 0 0;
+    border-color: #ba281e;
+    box-shadow: 0 1px 0 #e8776f inset;
+    color: #fff;
+}
+#ipblock-settings-about .button-red:focus {
+    box-shadow: 0 1px 0 #e8776f inset, 0 0 0 1px #5b9dd9, 0 0 2px 1px rgba(30, 140, 190, 0.8);
+}
+#ipblock-settings-about .button-red:active {
+    background: #d02c21 none repeat scroll 0 0;
+    border-color: #ba281e;
+    box-shadow: 0 2px 5px -3px rgba(0, 0, 0, 0.5) inset, 0 0 0 1px #5b9dd9, 0 0 2px 1px rgba(30, 140, 190, 0.8);
+    color: #fff;
+}
+
+
+
+#ipblock-settings-about .button-orange {
+    background: #dd823b none repeat scroll 0 0;
+    border-color: #c36922;
+    box-shadow: 0 1px 0 #e8ac7c inset, 0 1px 0 rgba(0, 0, 0, 0.15);
+    color: #fff;
+}
+#ipblock-settings-about .button-orange:focus, 
+#ipblock-settings-about .button-orange:hover {
+    background: #d97426 none repeat scroll 0 0;
+    border-color: #ad5d1e;
+    box-shadow: 0 1px 0 #e59e66 inset;
+    color: #fff;
+}
+#ipblock-settings-about .button-orange:focus {
+    box-shadow: 0 1px 0 #e59e66 inset, 0 0 0 1px #5b9dd9, 0 0 2px 1px rgba(30, 140, 190, 0.8);
+}
+#ipblock-settings-about .button-orange:active {
+    background: #c36922 none repeat scroll 0 0;
+    border-color: #ad5d1e;
+    box-shadow: 0 2px 5px -3px rgba(0, 0, 0, 0.5) inset, 0 0 0 1px #5b9dd9, 0 0 2px 1px rgba(30, 140, 190, 0.8);
+    color: #fff;
+}
