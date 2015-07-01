@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: plugin, admin, best security plugins, login, bruteforce, login throttling, security, protection, ip, block, ipblock,  ban, auth, authentication, botnet, brute force, harden wp, limit login attempts, limit logins, lockdown
 Requires at least: 3.5
 Tested up to: 4.2.2
-Stable tag: 1.0
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ IPBlock offers powerful protection against bruteforce login attacks. Works in 2 
 
 == Description ==
 
-IPBlock limits number of attempts an user has to log in, thus providing very good protection against automated login attacks. It is highly customizable, you can set your own blocking scheme and decide what is the best to not annoy forgetful users. 
+IPBlock limits number of attempts an user has to log in, thus providing very good protection against automated login attacks. It is highly customizable, you can set your own blocking scheme and decide what is the best to not annoy forgetful users. You can also customize every message displayed to users.
 
 Featuring 2 working modes:
 
@@ -40,13 +40,19 @@ This plugin doesn't use plugabble functions and should be compatible with any ot
 
 == Frequently Asked Questions ==
 
+= What is record expiration time? =
+
+This option is also only for Mode 1. Record expiration time tells how long to track an ip after last login attempt. An ip record has a certain expiration timestamp, when it expires it is treated as it doesn't exist and is pending removal. Every time a login attempt is made expriation timestamp is set to a sum of current timestamp and record expiration time. For example if an ip has 20 login attempts and record expiration time is 60 seconds and if user of that ip won't log in in next 60 seconds, the record will be no longer valid and ip will be treated as if it made 0 attempts.
+
 = What is delay scheme? How to use it? =
 
-<p>Scheme dictates what delay to set after a number of failed login attempts. It's used if you choose Mode 1. It's composed of pairs login_attempts(+)=>delay (in seconds); Lets start with a single rule, e.g. 5=>10; This rule tells to set a delay of 10 seconds after 5 or more login attempts. Lets add aother rule:</p>
+Note that since version 1.1 there's a more user friendly interface to set up the blocking scheme, but the rules are still the same.
+
+Scheme dictates what delay to set after a number of failed login attempts. It's used if you choose Mode 1. It's composed of pairs login_attempts(+)=>delay (in seconds); Lets start with a single rule, e.g. 5=>10; This rule tells to set a delay of 10 seconds after 5 or more login attempts. Lets add another rule:
 
 5=>10; 10=>20;
 
-<p>10 seconds will be set on 5 or more attempts, but there's a rule for 10 or more attempts, so this second rule is more important in its scope. The result of this will be</p>
+10 seconds will be set on 5 or more attempts, but there's a rule for 10 or more attempts, so this second rule is more important in its scope. The result of this will be:
 
 *5-9 attempts = 10 second delay
 *10 or more attempts - 20 seconds delay
@@ -71,20 +77,22 @@ Another examples:
 <li>10+ attempts = 45 sec delay</li>
 </ul>
 
-= What is record expiration time? =
 
-<p>This option is also only for Mode 1. Record expiration time tells how long to track an ip after last login attempt. An ip record has a certain expiration timestamp, when it expires it is treated as it doesn't exist and is pending removal. Every time a login attempt is made expriation timestamp is set to a sum of current timestamp and record expiration time. For example if an ip has 20 login attempts and record expiration time is 60 seconds and if user of that ip won't log in in next 60 seconds, the record will be no longer valid and ip will be treated as if it made 0 attempts.</p>
 
 == Screenshots ==
 
-1. delay was set notice (Mode 1)
-2. cannot login yet error
-3. number of attempts used notice (Mode 2)
-4. all attempts used notice (Mode 2)
+1. easily set the blocking scheme
+2. customize output messages
+3. delay was set notice (Mode 1)
+4. cannot login yet error
+5. number of attempts used notice (Mode 2)
+6. all attempts used notice (Mode 2)
 
-Note that 'login protection by IPBlock' text is optional
 
 == Changelog ==
+
+1.1
+Javascript frontend for blocking scheme - setting scheme is now much easier
 
 1.0
 Released: December 18 2014
