@@ -1,7 +1,10 @@
 === Plugin Name ===
 Contributors: helium-3
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=P5UC9VG3Q687N
-Tags: plugin, admin, best security plugins, login, bruteforce, login throttling, security, protection, ip, block, ipblock,  ban, auth, authentication, botnet, brute force, harden wp, limit login attempts, limit logins, lockdown
+Tags: block ip, admin, administration, authentication, login, password, php, plugin, plugins, wordpress, bruteforce, login throttling, security, harden wordpress, limit login attempts
+
+
+
 Requires at least: 3.5
 Tested up to: 4.2.2
 Stable tag: 1.1
