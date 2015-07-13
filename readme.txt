@@ -2,12 +2,9 @@
 Contributors: helium-3
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=P5UC9VG3Q687N
 Tags: block ip, admin, administration, authentication, login, password, php, plugin, plugins, wordpress, bruteforce, login throttling, security, harden wordpress, limit login attempts
-
-
-
 Requires at least: 3.5
 Tested up to: 4.2.2
-Stable tag: 1.1
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -93,6 +90,11 @@ Another examples:
 
 
 == Changelog ==
+
+1.1.1
+
+Bug fix: Removed reference to deprecated file
+
 
 1.1
 Javascript frontend for blocking scheme - setting scheme is now much easier

@@ -168,10 +168,6 @@ class IPBlock {
 }
 
 
-
-#initialize IPBlock settings object
-if(is_admin()) require('ipblock_admin.php');
-
 #initialize IPBlock object
 $ipblock= new IPBlock();
 ?>
