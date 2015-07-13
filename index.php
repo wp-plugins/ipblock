@@ -4,7 +4,7 @@
  * Plugin Name: IPBlock
  * Plugin URI: https://wordpress.org/plugins/ipblock
  * Description: Powerful login throttling plugin for Your Wordpress site
- * Version: 1.1
+ * Version: 1.1.1
  * Author: Maciej Krawczyk
  * Author URI: https://profiles.wordpress.org/helium-3
  * License: GPLv2 or later
